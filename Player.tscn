@@ -1,0 +1,148 @@
+[gd_scene load_steps=14 format=3 uid="uid://b3wq1xur2es8q"]
+
+[ext_resource type="Script" path="res://Player.gd" id="1_6plnu"]
+[ext_resource type="PackedScene" uid="uid://ciirekyeb70r8" path="res://pistol.tscn" id="1_pnohn"]
+[ext_resource type="Script" path="res://Node2D.gd" id="2_14hab"]
+[ext_resource type="Script" path="res://GuiCamera.gd" id="2_hl288"]
+[ext_resource type="PackedScene" uid="uid://dqbhr3kqm8bub" path="res://knives.tscn" id="4_t0vwx"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u0sla"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_dpyj6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_luqmy"]
+depth_draw_mode = 1
+shading_mode = 0
+albedo_color = Color(0, 1, 1, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_oxg72"]
+radius = 0.15
+
+[sub_resource type="Animation" id="Animation_7ckgt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_7finf"]
+resource_name = "SHOOT"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0826366, 0.249026),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(1.0472, 0, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_eqthn"]
+resource_name = "shoot2"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 1),
+"transitions": PackedFloat32Array(1, 2.82843, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(1.5708, 0, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jfpjf"]
+_data = {
+"RESET": SubResource("Animation_7ckgt"),
+"SHOOT": SubResource("Animation_7finf"),
+"shoot2": SubResource("Animation_eqthn")
+}
+
+[node name="CharacterBody3D" type="CharacterBody3D"]
+collision_layer = 0
+script = ExtResource("1_6plnu")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0.8, 0)
+shape = SubResource("CapsuleShape3D_u0sla")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D"]
+visible = false
+mesh = SubResource("CapsuleMesh_dpyj6")
+skeleton = NodePath("../..")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Neck" type="Node3D" parent="CanvasLayer"]
+
+[node name="Camera3D" type="Camera3D" parent="CanvasLayer/Neck"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
+cull_mask = 1
+
+[node name="Node2D" type="Node2D" parent="CanvasLayer/Neck"]
+visible = false
+script = ExtResource("2_14hab")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="CanvasLayer/SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+canvas_cull_mask = 4293918727
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="CanvasLayer/SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
+cull_mask = 4
+script = ExtResource("2_hl288")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CanvasLayer/SubViewportContainer/SubViewport/Camera3D"]
+transform = Transform3D(0.1, 0, 0, 0, -4.37114e-09, -0.1, 0, 0.1, -4.37114e-09, 0, 0, -0.75)
+layers = 4
+material_override = SubResource("StandardMaterial3D_luqmy")
+cast_shadow = 0
+gi_mode = 0
+mesh = SubResource("SphereMesh_oxg72")
+skeleton = NodePath("../..")
+
+[node name="Facas" parent="CanvasLayer/SubViewportContainer/SubViewport/Camera3D" instance=ExtResource("4_t0vwx")]
+
+[node name="gun" parent="CanvasLayer/SubViewportContainer/SubViewport/Camera3D" instance=ExtResource("1_pnohn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.27, -0.185, -0.32)
+
+[node name="gunAim" type="AnimationPlayer" parent="CanvasLayer/SubViewportContainer/SubViewport/Camera3D/gun"]
+libraries = {
+"": SubResource("AnimationLibrary_jfpjf")
+}
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_right = 42.0
+offset_bottom = 182.0
+
+[node name="PlayerRay" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
+target_position = Vector3(0, 0, -100)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true

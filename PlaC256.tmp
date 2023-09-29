@@ -1,0 +1,55 @@
+[gd_scene load_steps=7 format=3 uid="uid://b3wq1xur2es8q"]
+
+[ext_resource type="Script" path="res://Player.gd" id="1_6plnu"]
+[ext_resource type="PackedScene" uid="uid://ciirekyeb70r8" path="res://pistol.tscn" id="1_pnohn"]
+[ext_resource type="Script" path="res://Node2D.gd" id="2_14hab"]
+[ext_resource type="Script" path="res://GuiCamera.gd" id="2_hl288"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u0sla"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_dpyj6"]
+
+[node name="CharacterBody3D" type="CharacterBody3D"]
+script = ExtResource("1_6plnu")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0.8, 0)
+shape = SubResource("CapsuleShape3D_u0sla")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D"]
+mesh = SubResource("CapsuleMesh_dpyj6")
+skeleton = NodePath("../..")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Neck" type="Node3D" parent="CanvasLayer"]
+
+[node name="Camera3D" type="Camera3D" parent="CanvasLayer/Neck"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
+cull_mask = 1
+
+[node name="Node2D" type="Node2D" parent="CanvasLayer/Neck"]
+script = ExtResource("2_14hab")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="CanvasLayer/SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+canvas_cull_mask = 4293918724
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="CanvasLayer/SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
+cull_mask = 4
+script = ExtResource("2_hl288")
+
+[node name="notghost" parent="CanvasLayer/SubViewportContainer/SubViewport/Camera3D" instance=ExtResource("1_pnohn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, -0.17, -0.6)

@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=3 uid="uid://dqbhr3kqm8bub"]
+
+[ext_resource type="Script" path="res://KnivesUlt.gd" id="1_1i1v4"]
+[ext_resource type="Material" uid="uid://cjs72obc4i4b3" path="res://brownCol.tres" id="2_3vbwd"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_qg1ck"]
+
+[node name="Facas" type="Node3D"]
+script = ExtResource("1_1i1v4")
+
+[node name="Faca1" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.05, 0, 0, 0, 0.01, 0, 0, 0, 0.2, 0.305368, -0.0289035, -0.333025)
+layers = 4
+material_override = ExtResource("2_3vbwd")
+mesh = SubResource("CylinderMesh_qg1ck")
+
+[node name="Faca5" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.05, 0, 0, 0, 0.01, 0, 0, 0, 0.2, -0.305, -0.029, -0.333)
+layers = 4
+material_override = ExtResource("2_3vbwd")
+mesh = SubResource("CylinderMesh_qg1ck")
+
+[node name="Faca4" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.05, 0, 0, 0, 0.01, 0, 0, 0, 0.2, -0.217, -0.091, -0.284)
+layers = 4
+material_override = ExtResource("2_3vbwd")
+mesh = SubResource("CylinderMesh_qg1ck")
+
+[node name="Faca2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.05, 0, 0, 0, 0.01, 0, 0, 0, 0.2, 0.216758, -0.0908258, -0.284339)
+layers = 4
+material_override = ExtResource("2_3vbwd")
+mesh = SubResource("CylinderMesh_qg1ck")
+
+[node name="Faca3" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.05, 0, 0, 0, 0.01, 0, 0, 0, 0.2, 0, -0.156551, -0.284)
+layers = 4
+material_override = ExtResource("2_3vbwd")
+mesh = SubResource("CylinderMesh_qg1ck")

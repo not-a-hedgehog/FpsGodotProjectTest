@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://csq8503m14nd6"]
+
+[ext_resource type="Script" path="res://Enemy.gd" id="1_dehrm"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_04b1j"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_m0mjk"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xj2ws"]
+albedo_color = Color(1, 0, 0, 1)
+
+[node name="EnemyEnt" type="RigidBody3D"]
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+script = ExtResource("1_dehrm")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0.8, 0)
+shape = SubResource("CapsuleShape3D_04b1j")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D"]
+mesh = SubResource("CapsuleMesh_m0mjk")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_xj2ws")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+offset = Vector2(0, 60)
+transform = Transform2D(1, 0, 0, 1, 0, 60)
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "
+"
