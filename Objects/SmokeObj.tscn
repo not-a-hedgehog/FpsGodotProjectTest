@@ -1,6 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://cuxn4b5ki603y"]
+[gd_scene load_steps=5 format=3 uid="uid://wl8edsn1yoag"]
 
-[ext_resource type="Script" path="res://smoke.gd" id="1_op6cd"]
+[ext_resource type="Script" path="res://Scripts/smoke.gd" id="1_g0nde"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_q6gp8"]
 
@@ -12,7 +12,7 @@ material = SubResource("StandardMaterial3D_mldd4")
 
 [node name="CharacterBody3D" type="CharacterBody3D"]
 collision_layer = 4
-script = ExtResource("1_op6cd")
+script = ExtResource("1_g0nde")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
@@ -20,9 +20,9 @@ shape = SubResource("SphereShape3D_q6gp8")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(4.5, 0, 0, 0, 4.5, 0, 0, 0, 4.5, 0, 0, 0)
+visible = false
 mesh = SubResource("SphereMesh_xhaet")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
 transform = Transform3D(-4.8, 0, 0, 0, -4.8, 0, 0, 0, -4.8, 0, 0, 0)
-visible = false
 mesh = SubResource("SphereMesh_xhaet")

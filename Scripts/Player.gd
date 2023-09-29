@@ -8,8 +8,6 @@ extends CharacterBody3D
 
 @onready var gunAnim := $CanvasLayer/SubViewportContainer/SubViewport/Camera3D/gun/gunAim
 
-@onready var ball := $Node3D
-
 @onready var rayCast := $PlayerRay;
 
 @onready var label := $CanvasLayer/Label;
@@ -32,8 +30,8 @@ extends CharacterBody3D
 
 var gunSelected = 0;
 var gunSwitch = 0;
-var smoke = load("res://Objs/SmokeObj.tscn")
-var knife = load("res://Objs/faquitaObj.tscn");
+var smoke = load("res://Objects/SmokeObj.tscn")
+var knife = load("res://Objects/faquitaObj.tscn");
 
 @export var bulletForce := 2.0;
 
@@ -134,7 +132,6 @@ func _process(delta):
 func _physics_process(delta):
 	rayCast.rotation = Vector3(camera.rotation.x,neck.rotation.y,0);
 	
-	ball.position = rayCast.get_collision_point()
 	
 	if !onDash:
 		if Input.is_action_just_pressed("strafe") and strafeCount > 0:

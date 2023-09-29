@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://csq8503m14nd6"]
+[gd_scene load_steps=6 format=3 uid="uid://duhbmify8ieln"]
 
-[ext_resource type="Script" path="res://Enemy.gd" id="1_dehrm"]
+[ext_resource type="Script" path="res://Scripts/Enemy.gd" id="1_kygxk"]
+[ext_resource type="Material" path="res://Materials/red_col_3.tres" id="2_mu8yt"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_04b1j"]
 
@@ -13,13 +14,14 @@ albedo_color = Color(1, 0, 0, 1)
 axis_lock_angular_x = true
 axis_lock_angular_y = true
 axis_lock_angular_z = true
-script = ExtResource("1_dehrm")
+script = ExtResource("1_kygxk")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0.8, 0)
 shape = SubResource("CapsuleShape3D_04b1j")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D"]
+material_override = ExtResource("2_mu8yt")
 mesh = SubResource("CapsuleMesh_m0mjk")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_xj2ws")

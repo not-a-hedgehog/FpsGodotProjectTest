@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://bq5evw2pqcvbc"
-path="res://.godot/imported/notghost.blend-b44832440175fa005aa9da8e36ddcb4a.scn"
+path="res://.godot/imported/notghost.blend-fff1d670b98619147940ec188b6ead0e.scn"
 
 [deps]
 
-source_file="res://notghost.blend"
-dest_files=["res://.godot/imported/notghost.blend-b44832440175fa005aa9da8e36ddcb4a.scn"]
+source_file="res://Models3d/notghost.blend"
+dest_files=["res://.godot/imported/notghost.blend-fff1d670b98619147940ec188b6ead0e.scn"]
 
 [params]
 

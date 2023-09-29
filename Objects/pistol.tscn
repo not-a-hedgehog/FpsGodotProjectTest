@@ -1,8 +1,8 @@
 [gd_scene load_steps=2 format=3 uid="uid://ciirekyeb70r8"]
 
-[ext_resource type="PackedScene" uid="uid://bq5evw2pqcvbc" path="res://notghost.blend" id="1_8gg8i"]
+[ext_resource type="PackedScene" uid="uid://bq5evw2pqcvbc" path="res://Models3d/notghost.blend" id="1_10syu"]
 
-[node name="notghost" instance=ExtResource("1_8gg8i")]
+[node name="notghost" instance=ExtResource("1_10syu")]
 
 [node name="Cube" parent="." index="0"]
 transform = Transform3D(-4.37114e-09, 0, -0.1, 0, 0.1, 0, 0.1, 0, -4.37114e-09, 0, 0, -0.3)
